@@ -1,10 +1,11 @@
 ---
-description: Display real-time model telemetry (latency, tok/s, context window, cache rate) in font 'Terminal'
+description: Render in-app model telemetry footer (latency, tok/s, context window, cache rate) in font 'Terminal'
 ---
 
 # /telemetry
 
-Executes real-time model telemetry inspection:
-1. Calculates latency (ms), tokens per second (tok/s), context window percentage, and cache hit rate (%).
-2. Invokes the `telemetry-profiler` subagent if anomaly detection is requested.
-3. Renders the status HUD styled with font name 'Terminal'.
+Renders the clean, single-line telemetry status footer directly inside the ZCode in-app chat interface:
+- Displays latency (ms), tokens per second (tok/s), context window %, and cache hit rate (%).
+- Rendered exclusively within the ZCode UI using the font name **`Terminal`**.
+- Format:
+  `⏱ 1259 tok/s    🗄 Cache hit 77%    ○ 3%    ⚡ 142ms`
