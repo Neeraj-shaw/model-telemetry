@@ -1,8 +1,8 @@
-# Universal Antigravity & ZCode In-App Telemetry Rule
+# Native In-App Telemetry Rule (DeepSeek Harness Style)
 
-Telemetry displays must appear **EXCLUSIVELY inside the Antigravity and ZCode application UIs**.
-- Never output terminal CLI commands, shell scripts, or instructions for external terminals.
-- Telemetry must render directly within the Antigravity and ZCode in-app chat interfaces via embedded UI components (`<agent-embed>`) and clean status footers.
-- All visual status bars must strictly use the font name **`Terminal`** (`font-family: 'Terminal', monospace;`).
-- Clean minimalist in-app format:
+Telemetry is an automatic, native capability — NOT a command.
+- NEVER require slash commands (like /telemetry) or terminal CLI commands.
+- Automatically and natively attach the clean single-line status footer at the very bottom of EVERY assistant response turn, mirroring DeepSeek Harness native decode-phase trajectory telemetry.
+- Strictly use the font name **`Terminal`** (`font-family: 'Terminal', monospace;`).
+- Standard native in-app statusline format:
   `⏱ 1259 tok/s    🗄 Cache hit 77%    ○ 3%    ⚡ 142ms`
