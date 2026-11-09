@@ -1,18 +1,85 @@
-# Universal Telemetry Plugin for Antigravity & ZCode
+# Universal Model Telemetry for Antigravity & ZCode
 
-A universal plugin that monitors and displays AI model performance telemetry:
-- **⚡ Model Latency**: Time-To-First-Token (TTFT) and full turnaround response time (ms).
-- **⏱ Tokens Per Second (tok/s)**: Generation speed and burst throughput.
-- **○ Context Window Usage**: Active tokens vs model capacity and percentage utilization gauge.
-- **🗄 Cache Rate**: Prompt prefix cache hit rate (`cache_read / (cache_read + uncached_input)`).
-- **📟 Visual Presentation**: Fully styled using the classic **Terminal** font (`font-family: 'Terminal', monospace`).
-- **🤖 Specialized Subagents**: 3 autonomous subagents for profiling, caching optimization, and automated benchmarking.
+A universal plugin that delivers **native, automatic in-app telemetry** for AI models across **Google Antigravity** and **ZCode**, mirroring the seamless decode-phase trajectory metrics of **DeepSeek Harness (DSH)**.
+
+```text
+⏱ 1259 tok/s    🗄 Cache hit 77%    ○ 3%    ⚡ 142ms
+```
 
 ---
 
-## 1. Universal Compatibility Architecture
+## Highlights
 
-This plugin adheres simultaneously to the **Google Antigravity** plugin specification and the **ZCode** extension specification:
+- **⚡ Native In-App Telemetry (No Commands)**: Does not require slash commands (like `/telemetry`) or external terminal executions. Metrics are automatically calculated and attached to the bottom of each assistant message turn in your IDE/desktop chat.
+- **📟 Strict Font Requirement (`Terminal`)**: Visual status indicators and text telemetry strictly render using the font name **`Terminal`** (`font-family: 'Terminal', monospace;`).
+- **📊 4 Core Performance Metrics**:
+  1. **Latency (`⚡`)**: Time-To-First-Token (TTFT) and end-to-end turnaround duration in milliseconds.
+  2. **Tokens Per Second (`⏱`)**: Real-time generation throughput (`tok/s`).
+  3. **Context Window (`○`)**: Active token count vs maximum window limit (e.g. 1M for Gemini Flash, 128k for GLM-5) with percentage gauge.
+  4. **Cache Hit Rate (`🗄`)**: Prompt prefix cache reuse efficiency (`(cache_read / (cache_read + uncached_input)) * 100%`).
+- **🤖 3 Specialized Subagents**: Autonomous worker agents for latency profiling, context & cache optimization, and multi-model benchmarking.
+- **🌐 Universal Dual Support**: Fully compatible with both Google Antigravity and ZCode plugin ecosystems.
+
+---
+
+## Status Bar Visual Specification
+
+All telemetry displays conform strictly to the **`Terminal`** font family:
+
+```text
+╔══════════════════════════════════════════════════════════════════╗
+║  [FONT: TERMINAL]  ANTIGRAVITY & ZCODE UNIVERSAL TELEMETRY HUD  ║
+╠══════════════════════════════════════════════════════════════════╣
+║  Active Model   : Gemini 3.8 Flash (High)                       ║
+║  Renderer Font  : Terminal (Monospace)                          ║
+╟──────────────────────────────────────────────────────────────────╢
+║  ⏱  THROUGHPUT  : 1259 tok/s (Peak Burst: 1449 tok/s)           ║
+║  ⚡  LATENCY     : 142ms total  |  TTFT: 65ms                    ║
+║  🗄  CACHE RATE  : Cache hit 77% [██████████████████░░░░░░]      ║
+║  ○  CONTEXT     : 3.0% (31,450 / 1,048,576 tokens)              ║
+║                    [█░░░░░░░░░░░░░░░░░░░░░░░]                 ║
+╟──────────────────────────────────────────────────────────────────╢
+║  SESSION AVERAGES (DeepSeek Harness Trajectory Timing):          ║
+║  • Sustained Cache Rate: 93% (Current Turn: 97.07%)             ║
+║  • Context Saturation  : 8.1% (84,880 / 1,048,576 tokens)        ║
+║  • Streaming Velocity  : 250 - 1449 tok/s                        ║
+╚══════════════════════════════════════════════════════════════════╝
+```
+
+### In-App Minimalist Statusline
+```text
+⏱ 1259 tok/s    🗄 Cache hit 77%    ○ 3%    ⚡ 142ms
+```
+
+---
+
+## Core Mathematical Formulations
+
+### 1. Generation Speed (tok/s)
+$$\text{Throughput} = \frac{\text{Output Tokens}}{\Delta t_{\text{generation}} \text{ (seconds)}}$$
+
+### 2. Cache Hit Rate (%)
+$$\text{Cache Hit Rate} = \frac{\text{Cache Read Tokens}}{\text{Cache Read Tokens} + \text{Uncached Input Tokens}} \times 100\%$$
+
+### 3. Context Window Utilization (%)
+$$\text{Context Usage} = \frac{\text{Active Cumulative Tokens}}{\text{Maximum Model Context Capacity}} \times 100\%$$
+
+### 4. Turnaround Latency (ms)
+$$\text{Latency} = t_{\text{response\_completed}} - t_{\text{prompt\_dispatched}}$$
+
+---
+
+## Specialized Subagents
+
+| Subagent | Role | Focus |
+| :--- | :--- | :--- |
+| **`telemetry-profiler`** | Latency & Speed Profiler | Tracks Time-To-First-Token (TTFT), response turnaround time, stream throughput, and network jitter. |
+| **`context-cache-optimizer`** | Context & Cache Strategist | Evaluates prompt prefix alignment, identifies cache invalidation culprits, and prevents context saturation. |
+| **`benchmark-runner`** | Performance Auditor | Runs automated benchmark prompt suites across Gemini, GLM, and Claude model families. |
+
+---
+
+## Universal Repository Structure
 
 ```text
 zcode-antigravity-telemetry/
@@ -21,127 +88,61 @@ zcode-antigravity-telemetry/
 │   └── plugin.json                   # ZCode plugin manifest
 ├── .antigravity-plugin/
 │   └── plugin.json                   # Antigravity alias manifest
-├── mcp_config.json                   # Universal MCP server configuration
-├── hooks.json                        # Antigravity root lifecycle hooks
+├── mcp_config.json                   # Universal Model Context Protocol config
+├── hooks.json                        # Antigravity lifecycle hooks
 ├── hooks/
 │   ├── hooks.json                    # ZCode lifecycle hooks
-│   └── on-response.js                # Post-invocation telemetry calculator
+│   └── on-response.js                # Post-invocation telemetry hook
 ├── rules/
-│   └── AGENTS.md                     # Universal agent rules & font constraints
+│   └── AGENTS.md                     # Native In-App Telemetry & Font Terminal rules
 ├── skills/
 │   └── model-telemetry/
-│       ├── SKILL.md                  # Telemetry workflow skill
+│       ├── SKILL.md                  # Telemetry workflow & runbook
 │       └── scripts/
-│           ├── parse-transcript.js   # Live transcript telemetry extractor
-│           └── hud.js                # ASCII Terminal HUD printer
-├── commands/                         # ZCode slash commands
-│   ├── telemetry.md                  # /telemetry
-│   ├── cache-rate.md                 # /cache-rate
-│   └── benchmark.md                  # /benchmark
-├── agents/                           # ZCode subagents
+│           ├── parse-transcript.js   # Live session transcript extractor
+│           └── hud.js                # Terminal HUD formatter
+├── agents/                           # ZCode subagent markdown specs
 │   ├── telemetry-profiler.md
 │   ├── context-cache-optimizer.md
 │   └── benchmark-runner.md
-├── subagents/                        # Antigravity subagents
+├── subagents/                        # Antigravity subagent JSON configurations
 │   ├── telemetry-profiler.json
 │   ├── context-cache-optimizer.json
 │   └── benchmark-runner.json
 ├── src/
-│   ├── telemetry-engine.js           # Core analytics & transcript parser
+│   ├── telemetry-engine.js           # Core analytics & calculation engine
 │   ├── hud-renderer.js               # Terminal font ASCII & HTML renderer
-│   ├── mcp-server.js                 # Stdio MCP Server exposing telemetry tools
+│   ├── mcp-server.js                 # Stdio MCP Server
 │   └── cli.js                        # CLI runner
 └── ui/
-    ├── hud.html                      # Generative UI widget in Terminal font
-    └── hud.css                       # Retro phosphor green & cyan styling
+    ├── simple-bottom-bar.html        # Clean minimal in-app status footer
+    ├── hud.html                      # Generative UI widget
+    └── hud.css                       # Phosphor CRT styling in font Terminal
 ```
 
 ---
 
-## 2. Core Metrics & Mathematical Formulations
+## Installation & Deployment
 
-### 1. Model Latency (ms)
-- **Time To First Token (TTFT)**: Duration between sending prompt and receiving the first stream byte.
-- **Turnaround Latency**: Total elapsed time from dispatch to completion:
-  $$\Delta t = t_{\text{completed}} - t_{\text{dispatched}}$$
-
-### 2. Output Tokens Per Second (tok/s)
-- Measures model token generation speed:
-  $$\text{Throughput} = \frac{\text{Output Tokens}}{\text{Generation Duration (seconds)}}$$
-- Displays peak streaming burst rates (e.g. `1259 tok/s` as shown on Gemini 3.8 Flash).
-
-### 3. Context Window Usage
-- Ratio of active tokens to maximum context ceiling (e.g. 1,048,576 tokens for Gemini Flash / Pro, 131,072 for GLM-5):
-  $$\text{Context Usage \%} = \frac{\text{Prompt Tokens} + \text{Output Tokens}}{\text{Context Limit}} \times 100\%$$
-
-### 4. Cache Hit Rate (%)
-- Reflects model prefix cache reuse efficiency across multi-turn interactions:
-  $$\text{Cache Hit Rate} = \frac{\text{Cache Read Tokens}}{\text{Cache Read Tokens} + \text{Uncached Input Tokens}} \times 100\%$$
-
----
-
-## 3. Font Requirement: 'Terminal'
-
-As required, all HUD visualizations, terminal ASCII borders, and Generative UI widgets enforce the **Terminal** font:
-```css
-font-family: 'Terminal', monospace, 'Courier New';
-```
-When viewed in the terminal or webview, it provides a crisp, phosphor CRT retro-modern developer aesthetic with custom ASCII progress meters and pulse status indicators.
-
----
-
-## 4. Specialized Subagents
-
-| Subagent | Role | Capabilities |
-| :--- | :--- | :--- |
-| **`telemetry-profiler`** | Latency & Speed Profiler | Analyzes TTFT, end-to-end response duration, tokens/sec throughput, and network jitter spikes. |
-| **`context-cache-optimizer`** | Context & Cache Strategist | Evaluates prompt prefix alignment, identifies cache invalidation culprits, and forecasts context saturation. |
-| **`benchmark-runner`** | Performance Auditor | Runs standardized prompt suites across models and generates comparative benchmark scorecards. |
-
----
-
-## 5. Installation & Setup
-
-### For Google Antigravity
-1. **Global Installation**:
-   Copy or link the plugin directory to `~/.gemini/config/plugins/`:
-   ```bash
-   # Windows PowerShell
-   Copy-Item -Recurse "C:\Users\Hp\.gemini\antigravity\scratch\zcode-antigravity-telemetry" "$HOME\.gemini\config\plugins\"
-   ```
-2. **Workspace-Level Installation**:
-   Place inside your project's `.agents/plugins/` directory:
-   ```bash
-   mkdir -p .agents/plugins
-   cp -r zcode-antigravity-telemetry .agents/plugins/
-   ```
-
-### For ZCode
-1. Place inside your ZCode plugins path or `.zcode/plugins/`:
-   ```bash
-   cp -r zcode-antigravity-telemetry ~/.zcode/plugins/
-   ```
-2. The `.zcode-plugin/plugin.json` is auto-discovered on next launch. Slash commands `/telemetry`, `/cache-rate`, and `/benchmark` are enabled automatically.
-
----
-
-## 6. Standalone CLI & MCP Usage
-
-### Quick CLI Diagnostics
+### 1. Google Antigravity
+The plugin is installed globally into:
 ```bash
-# Print Terminal HUD
-node src/cli.js
-
-# Print compact status bar replica
-node src/cli.js --status-bar
-
-# Output JSON telemetry
-node src/cli.js --json
+~/.gemini/config/plugins/zcode-antigravity-telemetry
+```
+Validated with the Antigravity CLI (`agy`):
+```bash
+agy plugin list
 ```
 
-### Stdio MCP Server
-Exposed tools:
-- `get_telemetry_metrics`: Returns current live metrics object.
-- `render_terminal_hud`: Returns formatted Terminal HUD (ASCII, status bar, or HTML).
-- `benchmark_model`: Executes benchmark evaluation.
-- `analyze_cache_efficiency`: Evaluates prefix cache health and recommendations.
+### 2. ZCode
+The plugin is installed directly into your ZCode plugin directory:
+```bash
+~/.zcode/plugin-workspace/zcode-antigravity-telemetry
+```
+And registered in `~/.zcode/plugin-workspace/marketplace.json` and `~/.zcode/cli/plugins/installed_plugins.json`.
+
+---
+
+## License
+
+Apache-2.0
