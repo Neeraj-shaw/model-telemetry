@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Minimal Telemetry Footer</title>
+  <style>
+    @font-face {
+      font-family: 'Terminal';
+      src: local('Terminal'), local('Courier New'), local('Consolas'), local('monospace');
+    }
+    body {
+      margin: 0;
+      padding: 6px 16px;
+      background: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+    }
+    .telemetry-bottom-strip {
+      display: inline-flex;
+      align-items: center;
+      gap: 24px;
+      font-family: 'Terminal', monospace, 'Courier New' !important;
+      font-size: 13px;
+      color: #94a3b8;
+    }
+    .telemetry-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .icon-svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+  </style>
+</head>
+<body>
+  <div class="telemetry-bottom-strip">
+    <div class="telemetry-item" title="Speed">
+      <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 14l3-3m5 1a9 9 0 11-16 0" /></svg>
+      <span>1259 tok/s</span>
+    </div>
+    <div class="telemetry-item" title="Cache Hit Rate">
+      <svg class="icon-svg" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3" /><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" /><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" /></svg>
+      <span>Cache hit 77%</span>
+    </div>
+    <div class="telemetry-item" title="Context Window Usage">
+      <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-dasharray="56.5" stroke-dashoffset="54.8" /></svg>
+      <span>3%</span>
+    </div>
+    <div class="telemetry-item" title="Latency">
+      <svg class="icon-svg" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" /></svg>
+      <span>142ms</span>
+    </div>
+  </div>
+</body>
+</html>
