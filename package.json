@@ -1,0 +1,27 @@
+{
+  "name": "zcode-antigravity-telemetry",
+  "version": "1.0.0",
+  "description": "Universal telemetry engine and HUD visualizer for Antigravity and ZCode",
+  "main": "src/telemetry-engine.js",
+  "bin": {
+    "telemetry-hud": "src/cli.js"
+  },
+  "scripts": {
+    "start": "node src/cli.js",
+    "mcp": "node src/mcp-server.js",
+    "benchmark": "node src/cli.js --benchmark",
+    "test": "node src/telemetry-engine.js"
+  },
+  "keywords": [
+    "antigravity",
+    "zcode",
+    "telemetry",
+    "latency",
+    "tokens-per-second",
+    "context-window",
+    "cache-rate",
+    "terminal-font"
+  ],
+  "author": "Antigravity & ZCode Developer",
+  "license": "Apache-2.0"
+}

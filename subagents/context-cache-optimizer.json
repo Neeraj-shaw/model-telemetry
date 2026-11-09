@@ -1,0 +1,8 @@
+{
+  "name": "context-cache-optimizer",
+  "role": "Context & Cache Optimizer",
+  "description": "Specialized subagent that monitors context window utilization and cache hit rate. Optimizes prompt prefixes, caching efficiency, and context compaction strategies.",
+  "model": "inherit",
+  "enableMCPTools": true,
+  "enableWriteTools": true
+}

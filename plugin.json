@@ -1,0 +1,28 @@
+{
+  "name": "zcode-antigravity-telemetry",
+  "version": "1.0.0",
+  "description": "Universal telemetry plugin for Antigravity and ZCode. Displays model latency (TTFT & end-to-end), tokens per second (tok/s), context window consumption, and prompt cache hit rate formatted in classic Terminal font.",
+  "author": "Antigravity & ZCode Developer",
+  "homepage": "https://antigravity.google/docs/plugins",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/universal-plugins/zcode-antigravity-telemetry"
+  },
+  "license": "Apache-2.0",
+  "engines": {
+    "antigravity": ">=2.0.0",
+    "zcode": ">=1.0.0",
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "antigravity",
+    "zcode",
+    "telemetry",
+    "tokens-per-second",
+    "cache-rate",
+    "context-window",
+    "latency",
+    "terminal-font",
+    "subagents"
+  ]
+}

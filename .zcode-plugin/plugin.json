@@ -1,0 +1,20 @@
+{
+  "name": "zcode-antigravity-telemetry",
+  "version": "1.0.0",
+  "description": "Universal telemetry plugin for ZCode and Antigravity. Shows model latency, tokens per second, context window usage, and cache rate in Terminal font aesthetic.",
+  "author": {
+    "name": "Antigravity & ZCode Developer"
+  },
+  "subagents": [
+    "agents/telemetry-profiler.md",
+    "agents/context-cache-optimizer.md",
+    "agents/benchmark-runner.md"
+  ],
+  "commands": [
+    "commands/telemetry.md",
+    "commands/cache-rate.md",
+    "commands/benchmark.md"
+  ],
+  "hooks": "hooks/hooks.json",
+  "mcpServers": "mcp_config.json"
+}

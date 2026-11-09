@@ -1,0 +1,8 @@
+{
+  "name": "benchmark-runner",
+  "role": "Model Benchmark Runner",
+  "description": "Specialized subagent that executes standardized prompt benchmarks across Antigravity and ZCode models, generating comparative latency, tok/s, context growth, and cache rate profiles.",
+  "model": "inherit",
+  "enableMCPTools": true,
+  "enableWriteTools": true
+}

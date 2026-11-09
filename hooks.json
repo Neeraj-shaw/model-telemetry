@@ -1,0 +1,19 @@
+{
+  "telemetry-tracker": {
+    "enabled": true,
+    "PostInvocation": [
+      {
+        "type": "command",
+        "command": "node ./hooks/on-response.js",
+        "timeout": 5
+      }
+    ],
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "node ./hooks/on-response.js --init",
+        "timeout": 5
+      }
+    ]
+  }
+}

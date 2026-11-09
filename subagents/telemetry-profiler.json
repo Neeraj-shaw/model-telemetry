@@ -1,0 +1,8 @@
+{
+  "name": "telemetry-profiler",
+  "role": "Latency & Throughput Profiler",
+  "description": "Specialized subagent that monitors model latency, Time To First Token (TTFT), and throughput in tokens per second (tok/s).",
+  "model": "inherit",
+  "enableMCPTools": true,
+  "enableWriteTools": true
+}

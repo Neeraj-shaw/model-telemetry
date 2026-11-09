@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Universal Telemetry HUD</title>
+  <link rel="stylesheet" href="hud.css">
+</head>
+<body style="background: #05080c; padding: 20px;">
+  <div class="terminal-telemetry-root">
+    <h2>
+      <span>► UNIVERSAL TELEMETRY HUD [ANTIGRAVITY & ZCODE]</span>
+      <span style="font-size: 11px; color: #ffb000;">FONT: TERMINAL</span>
+    </h2>
+
+    <div class="hud-grid">
+      <!-- 1. Tokens Per Second -->
+      <div class="hud-card">
+        <div style="font-size: 20px;">⏱</div>
+        <div class="hud-val" style="color: #00ff66;">1259 tok/s</div>
+        <div class="hud-label">Output Speed</div>
+      </div>
+
+      <!-- 2. Cache Hit Rate -->
+      <div class="hud-card">
+        <div style="font-size: 20px;">🗄</div>
+        <div class="hud-val" style="color: #00e5ff;">77%</div>
+        <div class="hud-label">Cache Hit Rate</div>
+      </div>
+
+      <!-- 3. Context Window Usage -->
+      <div class="hud-card">
+        <div style="font-size: 20px;">○</div>
+        <div class="hud-val" style="color: #ffb000;">3%</div>
+        <div class="hud-label">Context Window</div>
+      </div>
+
+      <!-- 4. Model Latency -->
+      <div class="hud-card">
+        <div style="font-size: 20px;">⚡</div>
+        <div class="hud-val" style="color: #ff3366;">142ms</div>
+        <div class="hud-label">Latency (TTFT: 65ms)</div>
+      </div>
+    </div>
+
+    <!-- Active Status Bar replica matching uploaded image -->
+    <div style="font-size: 11px; color: #8fa3b7; text-align: center; margin-bottom: 4px;">
+      ANTIGRAVITY / ZCODE STATUS BAR INTERFACE
+    </div>
+    <div class="status-bar-pill">
+      <div>
+        <span style="display:inline-block; width:8px; height:8px; background:#00ff66; border-radius:50%; margin-right:6px;"></span>
+        <strong>Gemini 3.8 Flash (High)</strong>
+      </div>
+      <div>
+        <span>⏱</span> <strong>1259 tok/s</strong>
+      </div>
+      <div>
+        <span>🗄</span> <strong>Cache hit 77%</strong>
+      </div>
+      <div>
+        <span>○</span> <strong>3%</strong>
+      </div>
+      <div>
+        <span>⚡</span> <strong>142ms</strong>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

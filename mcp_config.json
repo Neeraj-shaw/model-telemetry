@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "universal-model-telemetry": {
+      "command": "node",
+      "args": [
+        "C:/Users/Hp/.gemini/antigravity/scratch/zcode-antigravity-telemetry/src/mcp-server.js"
+      ],
+      "env": {
+        "TELEMETRY_FONT": "Terminal",
+        "NODE_ENV": "production"
+      }
+    }
+  }
+}
